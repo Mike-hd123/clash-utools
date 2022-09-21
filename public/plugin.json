@@ -1,0 +1,20 @@
+{
+  "main": "index.html",
+  "logo": "logo.png",
+  "platform": [
+    "win32"
+  ],
+  "preload": "preload.js",
+  "development": {
+    "main": "http://localhost:3000"
+  },
+  "features": [
+    {
+      "code": "main",
+      "explain": "clash on utools",
+      "cmds": [
+        "clash"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,100 @@
+@baseUrl = http://127.0.0.1:2390
+@token = Bearer 1234567
+
+## 查流量
+GET {{baseUrl}}/traffic
+Authorization: {{token}}
+
+###
+
+## 查日志
+GET {{baseUrl}}/logs
+Authorization: {{token}}
+###
+
+## 获取版本
+GET {{baseUrl}}/version
+Authorization: {{token}}
+###
+
+## 代理
+@baseproxy = {{baseUrl}}/proxies
+GET  {{baseproxy}}
+Authorization: {{token}}
+
+###
+GET {{baseproxy}}/GLaDOS-N2-00
+Authorization: {{token}}
+###
+GET {{baseproxy}}/GLaDOS-N2-00/delay?timeout=3000&url=http://www.google.com
+Authorization: {{token}}
+###
+PUT {{baseproxy}}/%F0%9F%9A%80%20%E8%8A%82%E7%82%B9%E9%80%89%E6%8B%A9
+Authorization: {{token}}
+
+{
+    "name":"GLaDOS-N2-00"
+}
+###
+## 配置文件
+@baseconfig = {{baseUrl}}/configs
+GET {{baseconfig}}
+Authorization: {{token}}
+###
+PATCH {{baseconfig}}
+Authorization: {{token}}
+
+{
+    # "port":0,
+    # "socks-port":0,
+    # "redir-port":0,
+    # "allow-lan":true,//外网接入
+    # "mode":"Rule", //代理模式 Global | Rule | Direct
+    # "log-level":"info",//日志 info | warning | error | debug
+    "allow-lan":false
+}
+
+###
+PUT {{baseconfig}}?force=false
+Authorization: {{token}}
+
+{
+    "path":"C:\\Users\\mike\\AppData\\Roaming\\uTools\\clash\\config.yaml"
+}
+###
+GET {{baseUrl}}/rules
+Authorization: {{token}}
+
+###
+## 链接
+
+@baseConnet = {{baseUrl}}/connections
+
+GET {{baseConnet}}
+Authorization: {{token}}
+
+### 关闭所有链接
+DELETE {{baseConnet}}
+Authorization: {{token}}
+
+### 关闭指定链接
+DELETE {{baseConnet}}/ef5bacde-e45d-4ee4-9c9f-693469870a87
+Authorization: {{token}}
+
+###
+## 提供者
+
+@baseProvider = {{baseUrl}}/providers/proxies
+
+GET {{baseProvider}}
+Authorization: {{token}}
+
+###
+GET {{baseProvider}}/♻️ 自动选择
+Authorization: {{token}}
+###
+PUT {{baseProvider}}/🎯 全球直连
+Authorization: {{token}}
+###
+GET {{baseProvider}}/♻️ 自动选择/healthcheck
+Authorization: {{token}}
