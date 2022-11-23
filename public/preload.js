@@ -46,11 +46,16 @@ window.updata = function () {
     });
     if (base_url !== '') {
         base_url = encodeURIComponent(base_url.substring(0, base_url.length - 1));
-        const url = 'https://pub-api-1.bianyuan.xyz/sub?target=clash&url=' + base_url + '&insert=false&config=https%3A%2F%2Fraw.githubusercontent.com%2FACL4SSR%2FACL4SSR%2Fmaster%2FClash%2Fconfig%2FACL4SSR_Online_Mini.ini&emoji=true&list=false&tfo=false&scv=false&fdn=false&sort=false&new_name=true'
+        const url = 'https://sub.xeton.dev/sub?target=clash&new_name=true&url=' + base_url + '&insert=false&config=https%3A%2F%2Fraw.githubusercontent.com%2FACL4SSR%2FACL4SSR%2Fmaster%2FClash%2Fconfig%2FACL4SSR_Online_Mini.ini&emoji=true&list=false&tfo=false&scv=false&fdn=false&sort=false'
         const file = utools.getPath("userData") + "\\clash\\config.yaml"
-        cp.exec("curl \"" + url + "\" -x 127.0.0.1:2340 -o " + file)
-        window.clash.update({ path: file })
-        console.log("更新配置文件!");
+        cp.exec("curl \"" + url + "\" -x 127.0.0.1:2340 -o " + file, (error, stdout, stderr) => {
+            if (error) {
+                log.error(`执行的错误: ${error}`);
+                return;
+            }
+            window.clash.update({ path: file })
+            console.log("更新配置文件!");
+        })
     }
     else {
         console.log("不存在任何配置!");
